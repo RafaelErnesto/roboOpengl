@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1606547244 source:c:\users\rfler\documents\computação gráfica\robo\main.cpp
+	<GL/gl.h>
+	<GL/glut.h>
+	<math.h>
+	<stdio.h>
+
+1582936184 c:\users\rfler\documents\computação gráfica\glut\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
