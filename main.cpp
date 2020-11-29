@@ -169,7 +169,7 @@ void ligacaoBase() {
     glPushMatrix();
         //cor roxa
         glColor3f(0.5f, 0.0f, 0.5f);
-        //escalonamento para atender a especificação
+        //escalonamento para atender a especificação(a especificação diz 70% da altura da base, porém fica desproporcional)
         glScaled(comprimentoBase*0.2, alturaBase*0.3,0);
         quadrado();
     glPopMatrix();
@@ -182,7 +182,7 @@ void ligacaoEmCruz() {
     //são dois pequenos retangulos obtidos através de escalonamento, e eles são rotacionados de modo que formem um +
      glPushMatrix();
         glRotated(125.0f,0.0f,0.0f,1.0f);
-        glScaled(comprimentoBase*0.15, alturaBase*0.2,0);
+        glScaled(comprimentoBase*0.15, alturaBase*0.2,0);//a especificação não fiz nada sobre a medida do objeto +,portanto assumi um valor que achei adequado como base
         quadrado();
     glPopMatrix();
     glPushMatrix();
@@ -312,7 +312,8 @@ void dedo1() {
             glColor3f(0.0f, 0.5f, 1.0f);
             //adiciona angulo de rotação entre a ponta do dedo e a parte inicial do dedo.
             glRotated(anguloPontaDedo1,0.0f,0.0f,1.0f);
-            //escalona o triangulo para atender a especificação
+            //escalona o triangulo para atender a especificação(na especificação diz que a base deve ser 30% do diametro base do circulo,
+            // porém fica desproporcional com a junta do dedo(circulo) cujo diametro na especificação é 20% do diametro base do circulo)
             glScaled(diametroCirculo * 0.2f,alturaBraco * 0.2f,0);
             triangulo();
         glPopMatrix();
@@ -365,6 +366,8 @@ void mao() {
     dedo2();
      // agora desenhamos a junta da mão do robo
     glPushMatrix();
+        //segundo a especificação o diametro dessa junta é 30% do diametro base do circulu, porém acho que nao fica
+        // como no desenho, talvez 40% seria mais adequado.
         glScaled(0.3f,0.3f,0);
         junta();
     glPopMatrix();
@@ -514,6 +517,7 @@ void fazRoboAndarNaCurva() {
                 glClear(GL_COLOR_BUFFER_BIT);
                 desenhaPontos();//desenha os pontos selecionados
                 desenhaCurvas();//desenha a curva nos pontos
+
                 glPushMatrix();//push matrix para as alterações do desenho do robo ficarem restritas apenas ao robo
                     //desenha o robo.
                     robo();
@@ -536,6 +540,8 @@ void desenhaCena(void){
     glClear(GL_COLOR_BUFFER_BIT);
     //printa as informações na tela
     info();
+    //desenha os pontos selecionados
+    desenhaPontos();
     // se estamos no modo de seleção de pontos e já selecionamos todos os pontos que precisavamos,
     //esta na hora do robo percorrer o trajeto da curva
     if((quantidadePontosEsperados == quantidadePontosSelecionados) && quantidadePontosSelecionados > 0) {
